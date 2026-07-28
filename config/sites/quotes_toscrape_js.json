@@ -1,0 +1,41 @@
+{
+  "name": "quotes_toscrape_js",
+  "domain": "quotes.toscrape.com",
+  "enabled": true,
+  "render": true,
+  "start_urls": [
+    "https://quotes.toscrape.com/js/"
+  ],
+  "list_page": {
+    "item_selector": "div.quote",
+    "item_is_article": true,
+    "link_selector": null,
+    "link_attr": null,
+    "wait_for_selector": "div.quote"
+  },
+  "pagination": {
+    "enabled": true,
+    "next_selector": "li.next a",
+    "next_attr": "href",
+    "max_pages": 3
+  },
+  "article": {
+    "title_selector": null,
+    "body_selector": "span.text",
+    "published_at_selector": null,
+    "published_at_attr": null,
+    "category_selector": null,
+    "author_selector": "small.author",
+    "featured_image_selector": null,
+    "featured_image_attr": null,
+    "remove_selectors": ["script", "style"],
+    "metadata_selectors": {
+      "tags": "div.tags a.tag"
+    }
+  },
+  "request": {
+    "delay_seconds": 2,
+    "jitter_seconds": 1,
+    "headers": {}
+  }
+}

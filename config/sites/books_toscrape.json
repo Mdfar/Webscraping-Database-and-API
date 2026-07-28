@@ -1,0 +1,41 @@
+{
+  "name": "books_toscrape",
+  "domain": "books.toscrape.com",
+  "enabled": true,
+  "render": false,
+  "start_urls": [
+    "https://books.toscrape.com/catalogue/page-1.html"
+  ],
+  "list_page": {
+    "item_selector": "article.product_pod",
+    "link_selector": "h3 a",
+    "link_attr": "href"
+  },
+  "pagination": {
+    "enabled": true,
+    "next_selector": "li.next a",
+    "next_attr": "href",
+    "max_pages": 5
+  },
+  "article": {
+    "title_selector": "div.product_main h1",
+    "body_selector": "#product_description ~ p",
+    "published_at_selector": null,
+    "published_at_attr": null,
+    "category_selector": "ul.breadcrumb li:nth-child(3) a",
+    "author_selector": null,
+    "featured_image_selector": "#product_gallery img",
+    "featured_image_attr": "src",
+    "remove_selectors": ["script", "style", "nav", ".comments", "footer"],
+    "metadata_selectors": {
+      "price": ".product_main p.price_color",
+      "availability": ".product_main p.availability",
+      "rating_class": "p.star-rating"
+    }
+  },
+  "request": {
+    "delay_seconds": 2,
+    "jitter_seconds": 1,
+    "headers": {}
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "database": {
+    "path": "data/articles.db"
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "logs/scraper.log"
+  },
+  "defaults": {
+    "delay_seconds": 2,
+    "jitter_seconds": 1,
+    "max_retries": 3,
+    "retry_wait_fixed_ms": 2000,
+    "timeout_seconds": 15,
+    "user_agent": "ProjectAnnaBot/1.0 (+educational article-scraping demo; respects robots.txt)",
+    "respect_robots_txt": true,
+    "max_pages": 5
+  },
+  "sites_dir": "config/sites"
+}

@@ -1,0 +1,39 @@
+Build a Python-based scraping pipeline to extract articles from multiple websites storing data in an SQLite database.
+
+**Framework**
+1. Python with requests + BeautifulSoup: For static HTML content scraping.
+2. Selenium: For dynamic or JavaScript-rendered pages.
+3. SQLite3: To store extracted data in a lightweight database.
+4. JSON: For configuration files.
+5. retrying: To handle failed requests and timeouts.
+
+JSON Configuration File when needed, like for website-specific details, such as base URLs, pagination rules (e.g., "next" button classes), metadata fields to extract (e.g., title, body, published_at).
+
+Workflow would start with some initialization, load scraping targets and settings from config.json. As we like to make it scalable, so that we can easily add new news sites for scraping.
+
+Configure retry logic and request headers. Fetch content from target URLs using requests for static pages (Selenium for dynamic content + parse and extract data fields like title, body, published_at, url, etc).
+Handle pagination iteratively or recursively.
+Gracefully retry failed requests. Important to not put load on these websites.
+Log errors using Python's logging module for debugging and monitoring.
+Data Storage:Save parsed articles in an articles_raw SQLite table with our schema.
+
+**Data Storage / Suggested articles table structure**
+Save parsed articles in an articles_raw SQLite table with the following schema:
+~ id: Auto-increment primary key.
+~ domain: Domain name of the website hosting the article
+~ article_id: Unique identifier for each article.
+~ title: Title of the article.
+~ slug: URL-friendly version of the title for routing.
+~ body: Rich text content of the article.
+~ published_at: Date and time when the article was published.
+~ category_id: Identifier linking to the article's category.
+~ author_id: Identifier linking to the article's author.
+~ featured_image_id: Identifier linking to the article's featured image.
+~ metadata: JSON field for additional fields like tags or categories.
+~ url: Full URL of the article
+
+**Things to consider**
+Clean and tokenize text to remove noise (e.g., ads, navigation content).
+We will not need any comments, view counts or such other data from the webscraper.
+
+The purpose of this scraping is to build all historical discussions and then re-process it using LLM, where all articles are analyzed and new article is written around that same theme.
